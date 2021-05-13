@@ -143,6 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (this.model) {
           this.model.position = new PIXI.Point(width * 0.45, height * 0.36);
           // this.model.scale = new PIXI.Point((this.model.position.x * 0.6), (this.model.position.x * 0.6));
+          //修改moc3模型显示的放大倍数，这里用的是双生视界的moc3模型，它有点特殊，模型普遍偏小，所以这里面倍数变大，如果你的模型显示太大，请修改这里的放大倍数
           this.model.scale = new PIXI.Point(width * 1, height * 0.6);
           this.model.masks.resize(this.app.view.width, this.app.view.height);
         }
@@ -167,9 +168,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
 
-      //语音数组
-      
+      //语音数组，播放语音的地址
       const arrVoice = ["https://www.joy127.com/url/77696.mp3","https://www.joy127.com/url/77697.mp3","https://www.joy127.com/url/77698.mp3","https://www.joy127.com/url/77699.mp3","https://www.joy127.com/url/77700.mp3","https://www.joy127.com/url/77701.mp3"]
+      //语音对应的文字
       const arrText = ["店长要来一杯咖啡么?","愿所有的牺牲者得以安息","一定不存在不需要战争也能解决纠纷的办法","店长，不查看一下终端的信息吗？……或许，有很重要的事呢","店长今天的检查结果也ok","咖啡馆里又发生了什么呢？要不要去看看"]
       this.app.view.addEventListener("mouseup", (event) => {
         if (!this.model) {
@@ -183,14 +184,16 @@ document.addEventListener('DOMContentLoaded', function () {
           } else if (this.isHit("TouchSpecial", event.offsetX, event.offsetY)) {
             this.startAnimation("touch_special", "base");
           } else {
+            //你所使用的moc3模型的motions文件夹下的所有motions名称数组
             const bodyMotions = ["Mgirl07_baohaibao","Mgirl07_baohaibao_a","Mgirl07_baolu_c","Mgirl07_dahaqian_c","Mgirl07_dazhaohu_a","Mgirl07_diantou","Mgirl07_ganga_c","Mgirl07_haixiu","Mgirl07_jiashengqi","Mgirl07_jingxi_a","Mgirl07_jingya","Mgirl07_keai_a","Mgirl07_kunao","Mgirl07_motouweixiao","Mgirl07_motouwushi_c","Mgirl07_motouxiao_a","Mgirl07_nu","Mgirl07_qidao","Mgirl07_qinwenshizijia_a","Mgirl07_sajiao_a","Mgirl07_sikao_a","Mgirl07_stand","Mgirl07_stand_a","Mgirl07_stand_c","Mgirl07_tianxiao_a","Mgirl07_touteng_c","Mgirl07_tuoyeganga_c","Mgirl07_tuoyehaixiu","Mgirl07_tuoyehaixiu_a","Mgirl07_tuoyeyihuo","Mgirl07_wuzhu","Mgirl07_xianqi_c","Mgirl07_xianqunzi","Mgirl07_xianqunzi_a","Mgirl07_xiugongpai_a","Mgirl07_xiunu_a","Mgirl07_yihuo"];
+            //点击随机一个motion
             let currentMotion =
               bodyMotions[Math.floor(Math.random() * bodyMotions.length)];
             //随机播放语音1-6
             let rand = Math.floor(Math.random()*6);
             $("#qgirlvoiceAudio")[0].src = arrVoice[rand];
             $("#qgirlvoiceAudio")[0].play();
-            //显示对应文字,3秒后将其关闭
+            //显示对应文字,2秒后将其关闭
             const node = document.getElementById("qgirlMessage")
             node.style.visibility = "visible"
 
@@ -400,6 +403,9 @@ document.addEventListener('DOMContentLoaded', function () {
     right: "0px",
     bottom: "-100px",
     basePath:
+      //moc3模型的在线地址，使用jsdelivr加速github仓库访问
+      //可以自建gitHub仓库，将moc3 l2d提交到仓库（注意一个仓库最多只有50M），因为jsdelivr对超过50M的仓库不予加速
+      //jsdelivr的使用请自行百度
       "https://cdn.jsdelivr.net/gh/Hexi1997/ailin@1.0/assets",
     role: "sifu",
     background: false,

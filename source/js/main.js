@@ -397,16 +397,16 @@ document.addEventListener('DOMContentLoaded', function () {
   
   //let width = document.documentElement.clientWidth
   // let height = document.documentElement.clientHeight
+  //moc3模型的在线地址，使用jsdelivr加速github仓库访问
+  //可以自建gitHub仓库，将moc3 l2d提交到仓库（注意一个仓库最多只有50M）
+  //因为jsdelivr对超过50M的仓库不予加速
+  //jsdelivr的使用请自行百度
   var config = {
     width: 200,
     height: 320,
     right: "0px",
     bottom: "-100px",
-    basePath:
-      //moc3模型的在线地址，使用jsdelivr加速github仓库访问
-      //可以自建gitHub仓库，将moc3 l2d提交到仓库（注意一个仓库最多只有50M），因为jsdelivr对超过50M的仓库不予加速
-      //jsdelivr的使用请自行百度
-      "https://cdn.jsdelivr.net/gh/Hexi1997/ailin@1.0/assets",
+    basePath: "https://cdn.jsdelivr.net/gh/Hexi1997/ailin@1.0/assets",
     role: "sifu",
     background: false,
     opacity: 1,
